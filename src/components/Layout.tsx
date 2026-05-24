@@ -135,10 +135,10 @@ export function Layout({ children }: { children: ReactNode }) {
           <div>
             <h4 className="font-display text-lg mb-3">Stay close</h4>
             <div className="flex gap-3">
-              <a href="https://instagram.com" className="p-2 rounded-full bg-card border border-border hover:bg-primary/20" aria-label="Instagram">
+              <a href="https://instagram.com/_svanelle_" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-card border border-border hover:bg-primary/20" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="mailto:hello@svanelle.com" className="p-2 rounded-full bg-card border border-border hover:bg-primary/20" aria-label="Email">
+              <a href="mailto:swanfragile@gmail.com" className="p-2 rounded-full bg-card border border-border hover:bg-primary/20" aria-label="Email">
                 <Mail className="h-4 w-4" />
               </a>
             </div>
