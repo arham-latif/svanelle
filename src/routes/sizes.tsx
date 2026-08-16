@@ -12,18 +12,19 @@ export const Route = createFileRoute("/sizes")({
 });
 
 const bracelets = [
-  { size: "XS", cm: "16–18", inches: "6.7–7.1" },
-  { size: "S",  cm: "18–19", inches: "7.1–7.5" },
-  { size: "M",  cm: "19–20", inches: "7.5–7.9" },
-  { size: "L",  cm: "20–21", inches: "7.9–8.3" },
+  { size: "XS", cm: "10.2–12.7", inches: "4–5" },
+  { size: "S",  cm: "12.7–15.2", inches: "5–6" },
+  { size: "M",  cm: "15.2–17.8", inches: "6–7" },
+  { size: "L",  cm: "17.8–20.3", inches: "7–8" },
 ];
 
 const necklaces = [
-  { name: "XS", cm: "37–38", inches: "14.6–15" },
-  { name: "S",  cm: "45–46", inches: "17.7–18.1" },
-  { name: "M",  cm: "51–52", inches: "20–20.5" },
-  { name: "L",  cm: "60–61", inches: "23.6–24" },
+  { name: "XS", cm: "38.1–40.6", inches: "15–16" },
+  { name: "S",  cm: "40.6–45.7", inches: "16–18" },
+  { name: "M",  cm: "45.7–50.8", inches: "18–20" },
+  { name: "L",  cm: "50.8–58.4", inches: "20–23" },
 ];
+
 
 function Sizes() {
   return (

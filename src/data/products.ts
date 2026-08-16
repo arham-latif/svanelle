@@ -10,7 +10,7 @@ export type Product = {
   image: string;
   /** All gallery image URLs */
   images: string[];
-  category: "necklaces" | "bracelets" | "sets";
+  category: "necklaces" | "bracelets" | "sets" | "keepsakes";
   /** Short tagline shown on cards */
   description: string;
   /** Available sizes, e.g. ["Choker", "Princess", "Matinee", "Opera"] */
@@ -73,6 +73,7 @@ function normalizeCategory(raw: string): Product["category"] | null {
   if (val === "necklace" || val === "necklaces") return "necklaces";
   if (val === "bracelet" || val === "bracelets") return "bracelets";
   if (val === "set" || val === "sets") return "sets";
+  if (val === "keepsake" || val === "keepsakes") return "keepsakes";
   return null;
 }
 

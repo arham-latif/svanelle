@@ -16,8 +16,8 @@ function buildWhatsAppUrl(items: ReturnType<typeof useCartStore.getState>["items
     ].join("\n");
   });
 
-  const shipping = total >= 1000 ? "Free" : "Rs 250";
-  const grandTotal = total >= 1000 ? total : total + 250;
+  const shipping = "Rs 250";
+  const grandTotal = total + 250;
 
   const message = [
     "*New Order \u2014 Svanelle*",
@@ -167,29 +167,6 @@ export function CartDrawer() {
         {items.length > 0 && (
           <div className="px-6 py-5 border-t border-border space-y-3">
 
-            {/* Free delivery progress */}
-            {total < 1000 ? (
-              <div className="rounded-2xl bg-secondary/40 px-4 py-3 space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">
-                    Add <span className="font-semibold text-foreground">Rs {(1000 - total).toLocaleString()}</span> more for free delivery
-                  </span>
-                  <span className="text-muted-foreground">{Math.round((total / 1000) * 100)}%</span>
-                </div>
-                <div className="h-1.5 w-full rounded-full bg-border overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-primary transition-all duration-500"
-                    style={{ width: `${Math.min((total / 1000) * 100, 100)}%` }}
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="rounded-2xl bg-primary/10 border border-primary/20 px-4 py-2.5 flex items-center gap-2">
-                <span className="text-primary text-sm">✓</span>
-                <span className="text-xs font-medium text-primary">You've unlocked free delivery!</span>
-              </div>
-            )}
-
             {/* Subtotal + shipping */}
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground text-sm">Subtotal</span>
@@ -197,13 +174,11 @@ export function CartDrawer() {
             </div>
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Delivery</span>
-              <span className={total >= 1000 ? "text-primary font-medium" : "text-foreground"}>
-                {total >= 1000 ? "Free" : "Rs 250"}
-              </span>
+              <span className="text-foreground">Rs 250</span>
             </div>
             <div className="flex items-center justify-between font-semibold border-t border-border pt-2">
               <span>Total</span>
-              <span>Rs {(total >= 1000 ? total : total + 250).toLocaleString()}</span>
+              <span>Rs {(total + 250).toLocaleString()}</span>
             </div>
 
             <p className="text-xs text-muted-foreground">

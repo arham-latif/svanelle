@@ -15,6 +15,7 @@ export const Route = createFileRoute("/custom")({
 
 const WHATSAPP_NUMBER = "923095017612";
 const PRICE_PER_INCH = 70;
+const MAX_LENGTH = 1000; // Maximum reasonable length in inches
 
 // Base lengths in inches per size (approximate, for reference)
 const SIZE_REFERENCE: Record<string, { label: string; inches: number }[]> = {
@@ -39,7 +40,7 @@ function CustomOrder() {
   const [notes, setNotes] = useState("");
 
   const lengthNum = parseFloat(length);
-  const isValidLength = !isNaN(lengthNum) && lengthNum > 0;
+  const isValidLength = !isNaN(lengthNum) && lengthNum > 0 && lengthNum <= MAX_LENGTH && isFinite(lengthNum);
   const estimatedPrice = isValidLength ? Math.ceil(lengthNum) * PRICE_PER_INCH : null;
 
   function buildMessage() {
@@ -137,9 +138,17 @@ function CustomOrder() {
               <input
                 type="number"
                 min="1"
+                max={MAX_LENGTH}
                 step="0.5"
                 value={length}
-                onChange={(e) => setLength(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  // Prevent input that would exceed max length
+                  const num = parseFloat(val);
+                  if (val === "" || (!isNaN(num) && num <= MAX_LENGTH)) {
+                    setLength(val);
+                  }
+                }}
                 placeholder="e.g. 18"
                 className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm pr-16"
               />
@@ -147,6 +156,13 @@ function CustomOrder() {
                 inches
               </span>
             </div>
+
+            {/* Show error for invalid length */}
+            {length && !isValidLength && parseFloat(length) > MAX_LENGTH && (
+              <p className="text-xs text-destructive mt-2">
+                Maximum length is {MAX_LENGTH} inches. For larger custom orders, please contact us directly.
+              </p>
+            )}
 
             <div className="flex items-center gap-2 mt-2">
               <Ruler className="h-3.5 w-3.5 text-muted-foreground" />
@@ -160,16 +176,16 @@ function CustomOrder() {
           </div>
 
           {/* Price estimate */}
-          {isValidLength && estimatedPrice !== null && (
+          {isValidLength && estimatedPrice !== null && isFinite(estimatedPrice) && (
             <div className="rounded-2xl bg-primary/10 border border-primary/20 px-6 py-4 flex items-center justify-between">
-              <div>
+              <div className="flex-1 min-w-0">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">Estimated price</p>
-                <p className="font-display text-3xl mt-0.5">Rs {estimatedPrice.toLocaleString()}</p>
+                <p className="font-display text-3xl mt-0.5 break-words">Rs {estimatedPrice.toLocaleString()}</p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {Math.ceil(lengthNum)} inches × Rs {PRICE_PER_INCH} / inch
                 </p>
               </div>
-              <Sparkles className="h-8 w-8 text-primary/40" />
+              <Sparkles className="h-8 w-8 text-primary/40 shrink-0" />
             </div>
           )}
 
