@@ -322,14 +322,10 @@ function ProductDetail() {
             {/* Trust badges */}
             <div className="mt-6 grid grid-cols-2 gap-3">
               <div className="flex items-start gap-2 text-xs text-muted-foreground p-3 rounded-2xl bg-muted/50">
-                <Truck className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                <span>Free shipping on orders Rs 1,000+</span>
-              </div>
-              <div className="flex items-start gap-2 text-xs text-muted-foreground p-3 rounded-2xl bg-muted/50">
                 <Heart className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                 <span>Handmade in small batches</span>
               </div>
-              <div className="flex items-start gap-2 text-xs text-muted-foreground p-3 rounded-2xl bg-muted/50 col-span-2">
+              <div className="flex items-start gap-2 text-xs text-muted-foreground p-3 rounded-2xl bg-muted/50">
                 <Leaf className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                 <span>Pearls & beads</span>
               </div>

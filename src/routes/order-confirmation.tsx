@@ -19,6 +19,8 @@ type OrderData = {
   items: CartItem[];
   total: number;
   shipping: number;
+  giftBox?: boolean;
+  giftBoxPrice?: number;
   address: {
     firstName: string;
     lastName: string;
@@ -73,7 +75,7 @@ function OrderConfirmation() {
     );
   }
 
-  const subtotal = order.total - order.shipping;
+  const subtotal = order.total - order.shipping - (order.giftBoxPrice || 0);
 
   return (
     <Layout>
@@ -136,8 +138,14 @@ function OrderConfirmation() {
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Shipping</span>
-                <span>{order.shipping === 0 ? "Free" : `Rs ${order.shipping.toLocaleString()}`}</span>
+                <span>Rs {order.shipping.toLocaleString()}</span>
               </div>
+              {order.giftBox && (
+                <div className="flex justify-between text-muted-foreground">
+                  <span>Gift box</span>
+                  <span>Rs {(order.giftBoxPrice || 0).toLocaleString()}</span>
+                </div>
+              )}
               <div className="flex justify-between font-semibold text-base pt-2 border-t border-border">
                 <span>Total paid</span>
                 <span>Rs {order.total.toLocaleString()}</span>
